@@ -1,0 +1,33 @@
+<FormGroup>
+<TextField 
+    error={touched.name && Boolean(errors.name)}
+    type="text" 
+    name="name" 
+    id="name" 
+    placeholder="Enter your name"
+    onChange={handleChange}
+    onBlur={handleBlur}
+    value={values.name}
+    label="Name"
+    helperText={this.error(touched.name,errors.name)}
+    />
+    
+</FormGroup>
+<FormGroup>
+<div>&nbsp;</div>
+</FormGroup>
+<FormGroup>
+<TextField 
+    error={touched.email && Boolean(errors.email)}
+    type="text" 
+    name="email" 
+    id="email" 
+    placeholder="Enter your email"
+    onChange={handleChange}
+    onBlur={handleBlur}
+    value={values.email}
+    label="Email"
+    helperText={this.error(touched.email,errors.email)}
+    />
+   
+</FormGroup>
