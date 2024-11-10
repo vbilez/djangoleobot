@@ -141,6 +141,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 				};
 	}
 	rotateImage = (i) =>{
+		//let arr = this.state.imgs;
 		console.log(i);
 	}
 
@@ -242,10 +243,10 @@ import LinearProgress from '@material-ui/core/LinearProgress';
         		if(d.class=="photo") return (<li key={idx} draggable={true} onDragStart={this.dragStart.bind(this)}  data-drag={"drag"} data-slot={idx} onDragEnd={this.dragEnd.bind(this)} className={photoclases} id={"add-img-".idx} style={{position: 'relative', left: '0px', top: '0px'}}>
 							<div>
 								<a className="rotate-photo-a"  title="Изменить фото" href="#" rel="1" >
-									<i data-icon="circle_rotate"  onClick={() =>{this.rotateImage(idx)}}></i>
+									<i data-icon="circle_rotate"  onClick={(e) =>{e.preventDefault();this.rotateImage(idx)}}></i>
 								</a>
 								<a className="delete-photo-a" title="Удалить" href="#" rel="1">
-									<i data-icon="circle_remove" onClick={() =>{this.removeImage(idx)}}></i>
+									<i data-icon="circle_remove" onClick={(e) =>{e.preventDefault();this.removeImage(idx)}}></i>
 								</a>
 								<img className="" src={this.state.imgs[idx] || ""} id={"img_".idx} alt="" ></img>
 							</div>

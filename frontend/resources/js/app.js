@@ -13,5 +13,6 @@ require('./bootstrap');
 
 require('./components/reactindex');
 require('./components/DependingForm');
+require('./components/OnForm');
 require('./components/Mapp');
 

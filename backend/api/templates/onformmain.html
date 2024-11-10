@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{% csrf_token %}">
+    <script src="{% static 'js/app.js' %}" defer></script>
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{% static 'css/app.css' %}" rel="stylesheet">
+</head>
+<body >
+  
+<div id="onform"></div>
+<script>
+    // Initialize and add the map
+    const setValueAndTriggerChange = (id, value) => {
+    const inputElement = document.getElementById(id);
+    if (inputElement) {
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      ).set;
+      nativeInputValueSetter.call(inputElement, value);
+
+      const event = new Event('input', { bubbles: true });
+      inputElement.dispatchEvent(event);
+    }
+  };
+    function initMap() {
+      // The location of Uluru
+      var uluru = {lat: 49.78412883555824, lng: 24.0608990097046};
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 17, center: uluru});
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({position: uluru, map: map,draggable:true});
+    
+      marker.addListener('dragend', function() 
+        {
+            geocodePosition(marker.getPosition());
+        });
+    
+        var defaultBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(49.920355729316384, 23.916209926605234),
+          new google.maps.LatLng(49.768034092813515, 24.11259054183961));
+      map.fitBounds(defaultBounds);
+    
+        var input =  document.getElementById('searchfield');
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    
+      var searchBox = new google.maps.places.SearchBox(
+        /** @type {HTMLInputElement} */(input));
+      google.maps.event.addListener(searchBox, 'places_changed', function() {
+        var places = searchBox.getPlaces();
+    
+        if (places.length == 0) {
+          return;
+        }
+       /* for (var i = 0, marker; marker = markers[i]; i++) {
+          marker.setMap(null);
+        }
+        */
+       
+        // For each place, get the icon, place name, and location.
+        markers = [];
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0, place; place = places[i]; i++) {
+          var image = {
+            url: place.icon,
+            size: new google.maps.Size(10, 10),
+            origin: new google.maps.Point(10,10),
+            anchor: new google.maps.Point(10, 10),
+            scaledSize: new google.maps.Size(10, 10)
+          };
+    
+          // Create a marker for each place.
+          /*
+          var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            title: place.name,
+            position: place.geometry.location
+          });
+    
+          markers.push(marker);
+          */
+          marker.setPosition(place.geometry.location);  
+          
+          bounds.extend(place.geometry.location);
+          console.log('place changed =>' + JSON.stringify(place.name));
+        }
+    
+        map.fitBounds(bounds);
+        map.setZoom(17);
+        map.panTo(marker.position);
+        console.log('place changed' +marker.position);
+        document.getElementById('lat').value=marker.getPosition().lat();
+        document.getElementById('lng').value=marker.getPosition().lng();
+        setValueAndTriggerChange('lat', marker.getPosition().lat())
+        setValueAndTriggerChange('lng', marker.getPosition().lng())
+      
+      });
+    }
+    function geocodePosition(pos) 
+    {
+            console.log(JSON.stringify(pos));
+    }
+    
+    function geocodePosition2(pos) 
+    {
+       geocoder = new google.maps.Geocoder();
+       geocoder.geocode
+        ({
+            latLng: pos
+        }, 
+            function(results, status) 
+            {
+                if (status == google.maps.GeocoderStatus.OK) 
+                {
+                    $("#mapSearchInput").val(results[0].formatted_address);
+                    $("#mapErrorMsg").hide(100);
+                } 
+                else 
+                {
+                    $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+                }
+            }
+        );
+    }
+        </script>
+         <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQ8h9v6a5SaqoEo7VbzTZaWtvo5J0Hi8&callback=initMap&libraries=places&region=UA"
+         type="text/javascript"></script>
+         <div>AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg</div>
+         <div>AIzaSyABQ8h9v6a5SaqoEo7VbzTZaWtvo5J0Hi8</div>
+</body>
+</html>

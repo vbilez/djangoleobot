@@ -17,7 +17,7 @@ import {Container, TextField, FormGroup, Button, RadioGroup, Select,
                             style={{marginBottom:"7px"}}
                             select
                             error={this.props.touched.kstspalen && Boolean(this.props.errors.kstspalen)}
-                            label="Кількість спалень"
+                            label="К-сть спалень"
                             name="kstspalen"
                             id="kstspalen"
                             value={this.props.values.kstspalen}
@@ -32,9 +32,8 @@ import {Container, TextField, FormGroup, Button, RadioGroup, Select,
                             <MenuItem value={2}>1</MenuItem>
                             <MenuItem value={3}>2</MenuItem>
                             <MenuItem value={4}>3</MenuItem>
-                            <MenuItem value={5}>4</MenuItem>
-                            <MenuItem value={5}>5</MenuItem>
-                            <MenuItem value={5}>6+</MenuItem>
+                            <MenuItem value={5}>4+</MenuItem>
+                            
                         </TextField>
                     </FormControl>
                

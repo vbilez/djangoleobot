@@ -231,11 +231,11 @@ import ImagesUploadDraggable from "./ImagesUploadDraggable";
                                   type="number"
                                   name="chergabudivnyctva" 
                                   id="chergabudivnyctva" 
-                                  onChange={this.props.handleChange}
+   
                                   min={1}
                                   margin={"dense"}
                                   value={this.props.values.chergabudivnyctva}
-                                  onChange={this.props.handleChange} 
+                      
                                   onBlur={this.props.handleBlur}
                                   inputProps={{ min: "1", max: "999999999", step: "1" }}
                                   onKeyDown={e => {

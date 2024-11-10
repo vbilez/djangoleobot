@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    
+    
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{% static 'css/app.css' %}" rel="stylesheet">
+</head>
+<body>
+    {% for img in imgs %}
+    <img src="{% static 'images/on/' %}{{img.name}}"/>
+    {% endfor %}
+
+
+    <div>
+   
+        тип об.нер{{objectner.type_real_estate}}<br/>
+        загальна площа{{objectner.ploshasagalna}}<br/>
+        площа корисна{{objectner.ploshakorysna}}<br/>
+        площа кухні{{objectner.ploshakuchnia}}<br/>
+        Поверх{{objectner.poverx}}<br/>
+        Поверховість{{objectner.poverxovist}}<br/>
+        Тип парковки:{{objectner.avtomiscetype}}<br/>
+        ціна{{objectner.cina}}<br/>
+        {% if myt > 0 and myt != None %}
+        матеріал стін:  {{ matstinname.MaterialStin }}<br/>
+        {% endif %}
+        {% if stanid > 0 and stanid != None %}
+         {{stanname.stan}}<br/>
+        {% endif %}
+        
+
+        {% if kstspalenid > 0 and kstspalenid != None %}
+        к-сть спалень: {{kstspalenname.spalennazva}}<br/>
+        {% endif %}
+
+        {% if budivliaid > 0 and budivliaid != None %}
+        будівля: {{budivlianame.budivlia}}<br/>
+        {% endif %}
+        <ul>
+        {% for tag in tags %}
+         <li>{{tag}}</li>
+        {% endfor %}
+        </ul>
+ 
+        
+
+      
+     
+
+        
+   
+       
+    </div>
+
+</body>
+</html>
