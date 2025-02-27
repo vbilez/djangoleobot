@@ -211,6 +211,8 @@ def neruxomobj(request):
     value31 = body_data.get('avtomiscetype',0)
     value32 = body_data.get('ploshadilianku', 0)
     value33 = body_data.get('komunikacii','')
+    coordx = body_data.get('latstr', '')
+    coordy = body_data.get('lngstr', '')
     linkedtagsids=[]
     if value2==1 and value==True:
         value7=0
@@ -299,8 +301,10 @@ def neruxomobj(request):
                           doisd = value28,
                           terminorendu=value30,
                           avtomiscetype=value31,
-                          ploshadilianku=float(value32),
+                          ploshadilianku=0.00 if value32 is None else float(value32),
                           komunikacii= value33,
+                          coordx = coordx,
+                          coordy = coordy,
                           )
     o.save()
     if value2==4:

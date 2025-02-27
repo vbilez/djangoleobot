@@ -109,8 +109,36 @@
       });
     }
     function geocodePosition(pos) 
+    //get pos on marker dragend
     {
-            console.log(JSON.stringify(pos));
+
+      
+      const str = JSON.stringify(pos)
+      
+      const regex = /"lat":([-+]?\d*\.\d+),"lng":([-+]?\d*\.\d+)/;
+
+        const match = str.match(regex);
+        if (match) {
+
+          const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value').set;
+          console.log(match)
+        const lat = parseFloat(match[1]);
+        const lng = parseFloat(match[2]);
+        document.getElementById("lat").value=lat
+        document.getElementById("lng").value=lng
+        // nativeInputValueSetter.call(document.getElementById("lat"), lat +","+lng);
+        // const event1 = new Event('input', { bubbles: false});
+        // input.dispatchEvent(event1);
+
+
+           
+        
+        } else {
+            console.log("No match found.");
+}
+           // document.getElementById("lat").value=JSON.stringify(pos);
     }
     
     function geocodePosition2(pos) 

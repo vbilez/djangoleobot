@@ -737,13 +737,15 @@ export default class OnForm extends Component {
                                           "doisd":this.state.doisd,
                                           "komunikacii":this.state.komunikacii,
                                           "onimages":  this.state.imgsback,
-                                          
+                                          "latstr":document.getElementById("lat").value,
+                                          "lngstr":document.getElementById("lng").value,
+                                   
                                           "photobud":  this.state.photobudback,  
                                           "photoplanuvannia":  this.state.photoplanuvanniaback,
                                           "photozemlia":  this.state.photozemliaback,
                                           "currentPos": this.state.currentPos
                                          } 
-
+                        console.log(payload)
                         await setValues(payload);
                        
 
@@ -1142,10 +1144,7 @@ export default class OnForm extends Component {
                             margin="dense"
                             name="lat"
                             id="lat"
-                            value={this.state.currentPos ? this.state.currentPos.lat :''}
-                              onChange={(e)=>{handleChange(e);
-                                  
-                                  }}
+                            
                     
                           >
                           </TextField>
@@ -1156,10 +1155,6 @@ export default class OnForm extends Component {
                             margin="dense"
                             name="lng"
                             id="lng"
-                            value={this.state.currentPos ? this.state.currentPos.lng :''}
-                            onChange={(e)=>{handleChange(e);
-                                  
-                                  }}
                           >
                           </TextField>
                        

@@ -932,19 +932,7 @@ export default class DependingForm extends Component {
                              
                            />
                         </FormControl>
-                        <FormControl hidden={values.avtomiscetype!=1 && values.avtomiscetype!=2 && values.avtomiscetype!=3}>
-                            <TextField 
-                              variant="outlined"
-                              label="Площа, загальна"
-                              display="inline"
-                              error={touched.ploshamisca && Boolean(errors.ploshamisca)}
-                              type="number" 
-                              name="ploshamisca" 
-                              id="ploshamisca" 
-                               margin={"dense"}
-                              
-                            />
-                        </FormControl>
+                    
                         
                          <FormControl hidden={values.avtomiscetype!==2}>
                                 <TextField  required variant="outlined"

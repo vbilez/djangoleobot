@@ -112,6 +112,8 @@ class Objectneruxomosti(models.Model):
     avtomiscetype=models.IntegerField()
     ploshadilianku=models.FloatField()
     komunikacii=models.TextField(db_collation='utf8_general_ci')
+    coordx=models.TextField(db_collation='utf8_general_ci')
+    coordy=models.TextField(db_collation='utf8_general_ci')
     class Meta:
         db_table = "objectneruxomostis"
 
